@@ -1,0 +1,375 @@
+[INFO] : Starting SimplyFlyApplication using Java 21.0.6 with PID 11012 (C:\Users\RAVI\Desktop\new\target\classes started by RAVI in C:\Users\RAVI\Desktop\new)
+[INFO] : No active profile set, falling back to 1 default profile: "default"
+[INFO] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO] : Finished Spring Data repository scanning in 75 ms. Found 7 JPA repository interfaces.
+[INFO] : Tomcat initialized with port 8081 (http)
+[INFO] : Starting service [Tomcat]
+[INFO] : Starting Servlet engine: [Apache Tomcat/10.1.40]
+[INFO] : Initializing Spring embedded WebApplicationContext
+[INFO] : Root WebApplicationContext: initialization completed in 2477 ms
+[INFO] : HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] : HHH000412: Hibernate ORM core version 6.5.3.Final
+[INFO] : HHH000026: Second-level cache disabled
+[INFO] : No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO] : HikariPool-1 - Starting...
+[INFO] : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54997f67
+[INFO] : HikariPool-1 - Start completed.
+[WARN] : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[ERROR] : Failed to initialize JPA EntityManagerFactory: Association 'com.hexaware.simplyfly.entities.User.bookings' is 'mappedBy' a property named 'user' which references the wrong entity type 'com.hexaware.simplyfly.entities.UserLogin', expected 'com.hexaware.simplyfly.entities.User'
+[ERROR] : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtRequestFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService' defined in file [C:\Users\RAVI\Desktop\new\target\classes\com\hexaware\simplyfly\security\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.hexaware.simplyfly.repositories.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+[INFO] : Stopping service [Tomcat]
+[WARN] : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1763)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1070)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+[WARN] : The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/java.lang.Thread.sleep0(Native Method)
+ java.base/java.lang.Thread.sleep(Thread.java:509)
+ com.zaxxer.hikari.util.UtilityElf.quietlySleep(UtilityElf.java:53)
+ com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:729)
+ com.zaxxer.hikari.pool.HikariPool$PoolEntryCreator.call(HikariPool.java:703)
+ java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+[WARN] : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+[INFO] : HikariPool-1 - Shutdown initiated...
+[INFO] : HikariPool-1 - Shutdown completed.
+[INFO] : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+[ERROR] : Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:170)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:619)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:755)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1364)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1353)
+	at com.hexaware.simplyfly.SimplyFlyApplication.main(SimplyFlyApplication.java:10)
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:147)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:520)
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:222)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:193)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167)
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtRequestFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService' defined in file [C:\Users\RAVI\Desktop\new\target\classes\com\hexaware\simplyfly\security\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.hexaware.simplyfly.repositories.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:788)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:768)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1439)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:211)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:174)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:169)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:154)
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:87)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:271)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:245)
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4464)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:772)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1203)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1193)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:75)
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:145)
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:749)
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:203)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:412)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:870)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164)
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:438)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128)
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService' defined in file [C:\Users\RAVI\Desktop\new\target\classes\com\hexaware\simplyfly\security\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.hexaware.simplyfly.repositories.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:795)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:237)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1212)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1448)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1358)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:785)
+	... 55 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.hexaware.simplyfly.repositories.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1705)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1454)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1448)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1358)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:904)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:782)
+	... 68 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:682)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:509)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1355)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1185)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 82 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Association 'com.hexaware.simplyfly.entities.User.bookings' is 'mappedBy' a property named 'user' which references the wrong entity type 'com.hexaware.simplyfly.entities.UserLogin', expected 'com.hexaware.simplyfly.entities.User'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
+	... 94 common frames omitted
+Caused by: org.hibernate.AnnotationException: Association 'com.hexaware.simplyfly.entities.User.bookings' is 'mappedBy' a property named 'user' which references the wrong entity type 'com.hexaware.simplyfly.entities.UserLogin', expected 'com.hexaware.simplyfly.entities.User'
+	at org.hibernate.boot.model.internal.BinderHelper.checkMappedByType(BinderHelper.java:1164)
+	at org.hibernate.boot.model.internal.CollectionBinder.isReversePropertyInJoin(CollectionBinder.java:1642)
+	at org.hibernate.boot.model.internal.CollectionBinder.noAssociationTable(CollectionBinder.java:1653)
+	at org.hibernate.boot.model.internal.CollectionBinder.bindStarToManySecondPass(CollectionBinder.java:1614)
+	at org.hibernate.boot.model.internal.CollectionBinder$1.secondPass(CollectionBinder.java:1605)
+	at org.hibernate.boot.model.internal.CollectionSecondPass.doSecondPass(CollectionSecondPass.java:45)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1811)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.processSecondPasses(InFlightMetadataCollectorImpl.java:1770)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:334)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1431)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1502)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:390)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:366)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802)
+	... 101 common frames omitted
+[INFO] : Starting SimplyFlyApplication using Java 21.0.6 with PID 3200 (C:\Users\RAVI\Desktop\new\target\classes started by RAVI in C:\Users\RAVI\Desktop\new)
+[INFO] : No active profile set, falling back to 1 default profile: "default"
+[INFO] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO] : Finished Spring Data repository scanning in 60 ms. Found 7 JPA repository interfaces.
+[INFO] : Tomcat initialized with port 8081 (http)
+[INFO] : Starting service [Tomcat]
+[INFO] : Starting Servlet engine: [Apache Tomcat/10.1.40]
+[INFO] : Initializing Spring embedded WebApplicationContext
+[INFO] : Root WebApplicationContext: initialization completed in 1352 ms
+[INFO] : HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] : HHH000412: Hibernate ORM core version 6.5.3.Final
+[INFO] : HHH000026: Second-level cache disabled
+[INFO] : No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO] : HikariPool-1 - Starting...
+[INFO] : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@792e8181
+[INFO] : HikariPool-1 - Start completed.
+[WARN] : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO] : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : Hibernate is in classpath; If applicable, HQL parser will be used.
+[INFO] : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[WARN] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO] : Tomcat started on port 8081 (http) with context path '/'
+[INFO] : Started SimplyFlyApplication in 6.418 seconds (process running for 7.105)
+[WARN] : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m31s614ms569µs200ns).
+[WARN] : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=32m18s371ms821µs).
+[WARN] : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m34s869ms740µs200ns).
+[WARN] : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m42s731ms626µs600ns).
+[INFO] : Application shutdown requested.
+[INFO] : Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : HikariPool-1 - Shutdown initiated...
+[INFO] : HikariPool-1 - Shutdown completed.
+[INFO] : Starting SimplyFlyApplication using Java 21.0.6 with PID 12760 (C:\Users\RAVI\Desktop\new\target\classes started by RAVI in C:\Users\RAVI\Desktop\new)
+[INFO] : No active profile set, falling back to 1 default profile: "default"
+[INFO] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO] : Finished Spring Data repository scanning in 73 ms. Found 7 JPA repository interfaces.
+[INFO] : Tomcat initialized with port 8081 (http)
+[INFO] : Starting service [Tomcat]
+[INFO] : Starting Servlet engine: [Apache Tomcat/10.1.40]
+[INFO] : Initializing Spring embedded WebApplicationContext
+[INFO] : Root WebApplicationContext: initialization completed in 2883 ms
+[INFO] : HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] : HHH000412: Hibernate ORM core version 6.5.3.Final
+[INFO] : HHH000026: Second-level cache disabled
+[INFO] : No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO] : HikariPool-1 - Starting...
+[INFO] : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@65262308
+[INFO] : HikariPool-1 - Start completed.
+[WARN] : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO] : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : Hibernate is in classpath; If applicable, HQL parser will be used.
+[INFO] : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[WARN] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO] : Tomcat started on port 8081 (http) with context path '/'
+[INFO] : Started SimplyFlyApplication in 16.198 seconds (process running for 17.859)
+[INFO] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] : Initializing Servlet 'dispatcherServlet'
+[INFO] : Completed initialization in 67 ms
+[INFO] : Application shutdown requested.
+[INFO] : Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : HikariPool-1 - Shutdown initiated...
+[INFO] : HikariPool-1 - Shutdown completed.
+[INFO] : Starting SimplyFlyApplication using Java 21.0.6 with PID 16688 (C:\Users\RAVI\Desktop\new\target\classes started by RAVI in C:\Users\RAVI\Desktop\new)
+[INFO] : No active profile set, falling back to 1 default profile: "default"
+[INFO] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO] : Finished Spring Data repository scanning in 106 ms. Found 7 JPA repository interfaces.
+[INFO] : Tomcat initialized with port 8081 (http)
+[INFO] : Starting service [Tomcat]
+[INFO] : Starting Servlet engine: [Apache Tomcat/10.1.40]
+[INFO] : Initializing Spring embedded WebApplicationContext
+[INFO] : Root WebApplicationContext: initialization completed in 2183 ms
+[INFO] : HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] : HHH000412: Hibernate ORM core version 6.5.3.Final
+[INFO] : HHH000026: Second-level cache disabled
+[INFO] : No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO] : HikariPool-1 - Starting...
+[INFO] : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5d22604e
+[INFO] : HikariPool-1 - Start completed.
+[WARN] : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO] : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : Hibernate is in classpath; If applicable, HQL parser will be used.
+[INFO] : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[WARN] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO] : Tomcat started on port 8081 (http) with context path '/'
+[INFO] : Started SimplyFlyApplication in 8.873 seconds (process running for 9.947)
+[INFO] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] : Initializing Servlet 'dispatcherServlet'
+[INFO] : Completed initialization in 1 ms
+[INFO] : Application shutdown requested.
+[INFO] : Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : HikariPool-1 - Shutdown initiated...
+[INFO] : HikariPool-1 - Shutdown completed.
+[INFO] : Starting SimplyFlyApplication using Java 21.0.6 with PID 18732 (C:\Users\RAVI\Desktop\new\target\classes started by RAVI in C:\Users\RAVI\Desktop\new)
+[INFO] : No active profile set, falling back to 1 default profile: "default"
+[INFO] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO] : Finished Spring Data repository scanning in 69 ms. Found 7 JPA repository interfaces.
+[INFO] : Tomcat initialized with port 8081 (http)
+[INFO] : Starting service [Tomcat]
+[INFO] : Starting Servlet engine: [Apache Tomcat/10.1.40]
+[INFO] : Initializing Spring embedded WebApplicationContext
+[INFO] : Root WebApplicationContext: initialization completed in 1653 ms
+[INFO] : HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] : HHH000412: Hibernate ORM core version 6.5.3.Final
+[INFO] : HHH000026: Second-level cache disabled
+[INFO] : No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO] : HikariPool-1 - Starting...
+[INFO] : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54997f67
+[INFO] : HikariPool-1 - Start completed.
+[WARN] : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO] : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : Hibernate is in classpath; If applicable, HQL parser will be used.
+[INFO] : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[WARN] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO] : Tomcat started on port 8081 (http) with context path '/'
+[INFO] : Started SimplyFlyApplication in 6.931 seconds (process running for 7.631)
+[INFO] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] : Initializing Servlet 'dispatcherServlet'
+[INFO] : Completed initialization in 2 ms
+[INFO] : Application shutdown requested.
+[INFO] : Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : HikariPool-1 - Shutdown initiated...
+[INFO] : HikariPool-1 - Shutdown completed.
+[INFO] : Starting SimplyFlyApplication using Java 21.0.6 with PID 9072 (C:\Users\RAVI\Desktop\new\target\classes started by RAVI in C:\Users\RAVI\Desktop\new)
+[INFO] : No active profile set, falling back to 1 default profile: "default"
+[INFO] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO] : Finished Spring Data repository scanning in 69 ms. Found 7 JPA repository interfaces.
+[INFO] : Tomcat initialized with port 8081 (http)
+[INFO] : Starting service [Tomcat]
+[INFO] : Starting Servlet engine: [Apache Tomcat/10.1.40]
+[INFO] : Initializing Spring embedded WebApplicationContext
+[INFO] : Root WebApplicationContext: initialization completed in 1572 ms
+[INFO] : HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] : HHH000412: Hibernate ORM core version 6.5.3.Final
+[INFO] : HHH000026: Second-level cache disabled
+[INFO] : No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO] : HikariPool-1 - Starting...
+[INFO] : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@792e8181
+[INFO] : HikariPool-1 - Start completed.
+[WARN] : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO] : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : Hibernate is in classpath; If applicable, HQL parser will be used.
+[INFO] : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[WARN] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO] : Tomcat started on port 8081 (http) with context path '/'
+[INFO] : Started SimplyFlyApplication in 6.954 seconds (process running for 7.624)
+[INFO] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] : Initializing Servlet 'dispatcherServlet'
+[INFO] : Completed initialization in 3 ms
+[INFO] : Application shutdown requested.
+[INFO] : Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : HikariPool-1 - Shutdown initiated...
+[INFO] : HikariPool-1 - Shutdown completed.
+[INFO] : Starting SimplyFlyApplication using Java 21.0.6 with PID 13296 (C:\Users\RAVI\Desktop\new\target\classes started by RAVI in C:\Users\RAVI\Desktop\new)
+[INFO] : No active profile set, falling back to 1 default profile: "default"
+[INFO] : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[INFO] : Finished Spring Data repository scanning in 71 ms. Found 7 JPA repository interfaces.
+[INFO] : Tomcat initialized with port 8081 (http)
+[INFO] : Starting service [Tomcat]
+[INFO] : Starting Servlet engine: [Apache Tomcat/10.1.40]
+[INFO] : Initializing Spring embedded WebApplicationContext
+[INFO] : Root WebApplicationContext: initialization completed in 1572 ms
+[INFO] : HHH000204: Processing PersistenceUnitInfo [name: default]
+[INFO] : HHH000412: Hibernate ORM core version 6.5.3.Final
+[INFO] : HHH000026: Second-level cache disabled
+[INFO] : No LoadTimeWeaver setup: ignoring JPA class transformer
+[INFO] : HikariPool-1 - Starting...
+[INFO] : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4407b042
+[INFO] : HikariPool-1 - Start completed.
+[WARN] : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+[INFO] : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+[INFO] : Initialized JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : Hibernate is in classpath; If applicable, HQL parser will be used.
+[INFO] : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+[WARN] : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[INFO] : Tomcat started on port 8081 (http) with context path '/'
+[INFO] : Started SimplyFlyApplication in 7.324 seconds (process running for 8.094)
+[INFO] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] : Initializing Servlet 'dispatcherServlet'
+[INFO] : Completed initialization in 3 ms
+[INFO] : Application shutdown requested.
+[INFO] : Closing JPA EntityManagerFactory for persistence unit 'default'
+[INFO] : HikariPool-1 - Shutdown initiated...
+[INFO] : HikariPool-1 - Shutdown completed.
