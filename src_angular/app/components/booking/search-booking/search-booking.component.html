@@ -1,0 +1,50 @@
+
+
+<div class="container mt-4">
+  <h4>Search Bookings by Status</h4>
+
+  <form (ngSubmit)="searchBooking()" #statusForm="ngForm" class="mb-3 d-flex gap-2">
+    <select class="form-control w-auto"  style="margin-right: 10px;" [(ngModel)]="status" name="status" required>
+      <option value="" disabled selected>Select status</option>
+      <option value="CONFIRMED">CONFIRMED</option>
+      <option value="CANCELLED">CANCELLED</option>
+    </select>
+    <button class="btn btn-primary" [disabled]="statusForm.invalid">Search</button>
+  </form>
+
+  <div *ngIf="bookings.length > 0">
+    <h5>Booking Results</h5>
+    <div class="container mt-4">
+  <h3 class="text-center text-info mb-4">All Bookings</h3>
+  <table class="table table-bordered table-striped text-center">
+    <thead class="table-info">
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Flight</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Date</th>
+        <th>Fare</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of bookings">
+        <td>{{ booking.bookingId }}</td>
+        <td>{{ booking.username }}</td>
+        <td>{{ booking.flightName }}</td>
+        <td>{{ booking.origin }}</td>
+        <td>{{ booking.destination }}</td>
+        <td>{{ booking.bookDate }}</td>
+        <td>{{ booking.totalFare }}</td>
+        <td>{{ booking.status }}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </div>
+
+  <div *ngIf="errorMsg" class="alert alert-danger mt-2">{{ errorMsg }}</div>
+</div>

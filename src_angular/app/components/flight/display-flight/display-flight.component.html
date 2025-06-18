@@ -1,0 +1,126 @@
+<!-- <p>display-flight works!</p>
+
+<div class="container mt-4">
+  <h3>All Flights</h3>
+
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Source</th>
+        <th>Destination</th>
+        <th>Departure</th>
+        <th>Arrival</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let flight of flights">
+        <ng-container *ngIf="editId !== flight.flightId; else editForm">
+          <td>{{ flight.flightId }}</td>
+          <td>{{ flight.flightName }}</td>
+          <td>{{ flight.source }}</td>
+          <td>{{ flight.destination }}</td>
+          <td>{{ flight.departureTime }}</td>
+          <td>{{ flight.arrivalTime }}</td>
+          <td>₹{{ flight.price }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="enableEdit(flight)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteFlight(flight.flightId)">Delete</button>
+          </td>
+        </ng-container>
+
+        <ng-template #editForm>
+          <td>{{ flight.flightId }}</td>
+          <td><input [(ngModel)]="flight.flightName" name="flightName" class="form-control" /></td>
+          <td><input [(ngModel)]="flight.source" name="source" class="form-control" /></td>
+          <td><input [(ngModel)]="flight.destination" name="destination" class="form-control" /></td>
+          <td><input [(ngModel)]="flight.departureTime" name="departureTime" class="form-control" /></td>
+          <td><input [(ngModel)]="flight.arrivalTime" name="arrivalTime" class="form-control" /></td>
+          <td><input [(ngModel)]="flight.price" name="price" class="form-control" /></td>
+          <td>
+            <button class="btn btn-sm btn-success" (click)="updateFlight(flight)">Save</button>
+            <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+          </td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+<div class="container mt-4">
+  <h3 class="text-center text-info mb-4">All Flights</h3>
+  <table class="table table-bordered table-striped text-center">
+    <thead class="table-info">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Flight Code</th>
+        <th>Seats</th>
+        <th>Cabin Baggage</th>
+        <th>Check-in Baggage</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let flight of flights">
+        <td>{{ flight.flightId }}</td>
+        <td>{{ flight.name }}</td>
+        <td>{{ flight.flightCode }}</td>
+        <td>{{ flight.totalSeats }}</td>
+        <td>{{ flight.cabinBaggageLimit }}</td>
+        <td>{{ flight.checkInBaggageLimit }}</td>
+         <td>
+          <button class="btn btn-warning btn-sm me-2" style="margin-right: 10px;" (click)="openEditModal(flight)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteFlight(flight.flightId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal" tabindex="-1" style="display: block;" *ngIf="showEditModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="updateFlight()" #editForm="ngForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Flight</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>Flight Name</label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="selectedFlight.name" required>
+          </div>
+
+          <div class="form-group">
+            <label>Flight Code</label>
+            <input type="text" class="form-control" name="flightCode" [(ngModel)]="selectedFlight.flightCode" required>
+          </div>
+
+          <div class="form-group">
+            <label>Total Seats</label>
+            <input type="number" class="form-control" name="totalSeats" [(ngModel)]="selectedFlight.totalSeats" required min="1">
+          </div>
+
+          <div class="form-group">
+            <label>Cabin Baggage Limit</label>
+            <input type="number" class="form-control" name="cabinBaggageLimit" [(ngModel)]="selectedFlight.cabinBaggageLimit" required min="0">
+          </div>
+
+          <div class="form-group">
+            <label>Check-in Baggage Limit</label>
+            <input type="number" class="form-control" name="checkInBaggageLimit" [(ngModel)]="selectedFlight.checkInBaggageLimit" required min="0">
+          </div>
+
+        </div>
+        <div class="modal-footer ">
+          <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Save</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>  

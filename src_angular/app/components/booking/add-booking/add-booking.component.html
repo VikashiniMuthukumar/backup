@@ -1,0 +1,258 @@
+
+
+<!--  
+
+    Main working forms
+
+
+
+<form #bookingForm="ngForm" (ngSubmit)="addBooking(bookingForm)" class="container col-md-6 mt-4">
+
+  <h2 class="text-center mb-4">Add Booking</h2>
+
+
+  <div class="form-group">
+    <label>Total Fare</label>
+    <input type="number" class="form-control" name="totalFare" [(ngModel)]="booking.totalFare" required min="1">
+    <span style="color: red;" *ngIf="bookingForm.submitted && bookingForm.controls['totalFare']?.invalid">
+      Total Fare is required and must be a positive number
+    </span>
+  </div>
+
+
+  <div class="form-group">
+    <label>Status</label>
+    <select class="form-control" name="status" [(ngModel)]="booking.status" required>
+      <option value="CONFIRMED">CONFIRMED</option>
+      <option value="CANCELLED">CANCELLED</option>
+    </select>
+    <span style="color: red;" *ngIf="bookingForm.submitted && bookingForm.controls['status']?.invalid">
+      Status is required
+    </span>
+  </div>
+
+
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Book</button>
+  </div>
+
+  <p class="text-success mt-3 text-center">{{ message }}</p>
+
+</form> -->
+
+
+<!-- 
+<p>add-booking works!</p>
+
+<form #bookingForm="ngForm" (ngSubmit)="addBooking(bookingForm)" class="container col-md-6 mt-4">
+
+  <h2 class="text-center mb-4">Add Booking</h2>
+
+  
+  <div class="form-group">
+    <label>Total Fare</label>
+    <input type="number" class="form-control" name="totalFare" [(ngModel)]="booking.totalFare" required min="1">
+    <span style="color: red;" *ngIf="bookingForm.submitted && bookingForm.controls['totalFare']?.invalid">
+      Total Fare is required and must be a positive number
+    </span>
+  </div>
+
+  
+  <div class="form-group">
+    <label>Status</label>
+    <select class="form-control" name="status" [(ngModel)]="booking.status" required>
+      <option value="" disabled selected>Select status</option>
+      <option value="CONFIRMED">CONFIRMED</option>
+      <option value="CANCELLED">CANCELLED</option>
+    </select>
+    <span style="color: red;" *ngIf="bookingForm.submitted && bookingForm.controls['status']?.invalid">
+      Status is required
+    </span>
+  </div>
+
+
+
+  
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Book</button>
+  </div>
+
+  
+  <p class="text-success mt-3 text-center">{{ message }}</p>
+
+</form>
+
+
+<!-- <form #bookingForm="ngForm" (ngSubmit)="addBooking(bookingForm)" class="container col-md-6 mt-4">
+
+  <h2 class="text-center mb-4">Add Booking</h2>
+
+  <div class="form-group">
+    <label>Username</label>
+    <input class="form-control" name="username" [(ngModel)]="booking.username" required>
+  </div>
+
+  <div class="form-group">
+    <label>Origin</label>
+    <input class="form-control" name="origin" [(ngModel)]="booking.origin" required>
+  </div>
+
+  <div class="form-group">
+    <label>Destination</label>
+    <input class="form-control" name="destination" [(ngModel)]="booking.destination" required>
+  </div>
+
+  <div class="form-group">
+    <label>Flight Code</label>
+    <input class="form-control" name="flightCode" [(ngModel)]="booking.flightCode" required>
+  </div>
+
+  <div class="form-group">
+    <label>Flight Name</label>
+    <input class="form-control" name="flightName" [(ngModel)]="booking.flightName" required>
+  </div>
+
+  <div class="form-group">
+    <label>Status</label>
+    <select class="form-control" name="status" [(ngModel)]="booking.status" required>
+      <option value="CONFIRMED">CONFIRMED</option>
+      <option value="CANCELLED">CANCELLED</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Booking Date</label>
+    <input type="date" class="form-control" name="bookDate" [(ngModel)]="booking.bookDate" required>
+  </div>
+
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-primary" [disabled]="bookingForm.invalid">Book</button>
+  </div>
+
+  <p class="text-success mt-3 text-center">{{ message }}</p>
+</form> -->
+
+
+
+<form #bookingForm="ngForm" (ngSubmit)="submitBooking()" class="container col-md-6 mt-4">
+
+  <h3 class="text-center mb-4">Book a Flight</h3>
+
+  <!-- Username -->
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" name="username" [(ngModel)]="booking.username" required pattern="[a-zA-Z0-9]{3,20}">
+    <span class="text-danger" *ngIf="bookingForm.submitted && bookingForm.controls['username']?.invalid">
+      Username is required (3-20 alphanumeric characters)
+    </span>
+  </div>
+
+  <!-- Flight Code Dropdown -->
+  <div class="form-group mt-2">
+    <label>Flight</label>
+    <select class="form-control" name="flightCode" [(ngModel)]="booking.flightCode" (change)="onFlightCodeSelect()" required #flightCodeCtrl="ngModel">
+      <option value="" disabled selected>-- Select Flight --</option>
+      <option *ngFor="let flight of flightOptions" [value]="flight.flightCode">
+        {{ flight.flightCode }} - {{ flight.name }}
+      </option>
+    </select>
+    <span class="text-danger" *ngIf="(flightCodeCtrl.touched || bookingForm.submitted) && flightCodeCtrl.invalid">
+      Flight selection is required
+    </span>
+  </div>
+
+  <!-- Flight Name (readonly) -->
+  <div class="form-group mt-2">
+    <label>Flight Name</label>
+    <input type="text" class="form-control" name="flightName" [(ngModel)]="booking.flightName" readonly>
+  </div>
+
+  <!-- Origin -->
+  <div class="form-group mt-2">
+    <label>Origin</label>
+    <select class="form-control" name="origin" [(ngModel)]="booking.origin" (change)="onRouteSelect()" required #originCtrl="ngModel">
+      <option value="" disabled selected>-- Select Origin --</option>
+      <option *ngFor="let origin of origins" [value]="origin">{{ origin }}</option>
+    </select>
+    <span class="text-danger" *ngIf="(originCtrl.touched || bookingForm.submitted) && originCtrl.invalid">
+      Origin is required
+    </span>
+  </div>
+
+  <!-- Destination -->
+  <div class="form-group mt-2">
+    <label>Destination</label>
+    <select class="form-control" name="destination" [(ngModel)]="booking.destination" (change)="onRouteSelect()" required #destCtrl="ngModel">
+      <option value="" disabled selected>-- Select Destination --</option>
+      <option *ngFor="let dest of destinations" [value]="dest">{{ dest }}</option>
+    </select>
+    <span class="text-danger" *ngIf="(destCtrl.touched || bookingForm.submitted) && destCtrl.invalid">
+      Destination is required
+    </span>
+  </div>
+
+  <!-- Arrival & Departure -->
+  <div class="form-group mt-2">
+    <label>Arrival Time</label>
+    <input type="text" class="form-control" name="arrivalTime" [(ngModel)]="booking.arrivalTime" readonly>
+  </div>
+
+  <div class="form-group mt-2">
+    <label>Departure Time</label>
+    <input type="text" class="form-control" name="departureTime" [(ngModel)]="booking.departureTime" readonly>
+  </div>
+
+  <!-- Base Fare -->
+  <div class="form-group mt-2">
+    <label>Base Fare (₹)</label>
+    <input type="number" class="form-control" name="baseFare" [(ngModel)]="booking.baseFare" readonly>
+  </div>
+
+  <!-- Baggage Info -->
+  <div class="form-group mt-2">
+    <label>Check-In Baggage Limit (kg)</label>
+    <input type="number" class="form-control" name="checkInBaggageLimit" [(ngModel)]="booking.checkInBaggageLimit" readonly>
+  </div>
+
+  <div class="form-group mt-2">
+    <label>Cabin Baggage Limit (kg)</label>
+    <input type="number" class="form-control" name="cabinBaggageLimit" [(ngModel)]="booking.cabinBaggageLimit" readonly>
+  </div>
+
+  <!-- Booking Status -->
+  <div class="form-group mt-2">
+    <label>Status</label>
+    <select class="form-control" name="status" [(ngModel)]="booking.status" required #statusCtrl="ngModel">
+      <option value="" disabled selected>-- Select Status --</option>
+      <option value="CONFIRMED">CONFIRMED</option>
+      <option value="CANCELLED">CANCELLED</option>
+    </select>
+    <span class="text-danger" *ngIf="(statusCtrl.touched || bookingForm.submitted) && statusCtrl.invalid">
+      Booking status is required
+    </span>
+  </div>
+
+  <!-- Total Fare -->
+  <div class="form-group mt-2">
+    <label>Total Fare (₹)</label>
+    <input type="number" class="form-control" name="totalFare" [(ngModel)]="booking.totalFare" min="1" required>
+    <span class="text-danger" *ngIf="bookingForm.submitted && bookingForm.controls['totalFare']?.invalid">
+      Total fare must be a positive number
+    </span>
+  </div>
+
+  <!-- Book Date -->
+  <div class="form-group mt-2">
+    <label>Book Date</label>
+    <input type="text" class="form-control" name="bookDate" [(ngModel)]="booking.bookDate" readonly>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-success" [disabled]="bookingForm.invalid">Submit Booking</button>
+  </div>
+
+  <!-- Message -->
+  <div *ngIf="message" class="alert alert-info mt-3">{{ message }}</div>
+
+</form>

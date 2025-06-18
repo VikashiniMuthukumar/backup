@@ -1,0 +1,30 @@
+<div class="container mt-5 col-md-4">
+  <h3 class="text-center">{{ isLogin ? 'Login' : 'Register' }}</h3>
+
+  <!-- Login Form -->
+  <form *ngIf="isLogin" (ngSubmit)="login()" #loginForm="ngForm">
+    <input type="text" class="form-control mb-2" placeholder="Username"
+           [(ngModel)]="loginData.username" name="username" required>
+    <input type="password" class="form-control mb-2" placeholder="Password"
+           [(ngModel)]="loginData.password" name="password" required>
+    <button class="btn btn-primary w-100" type="submit">Login</button>
+  </form>
+
+  <!-- Register Form -->
+  <form *ngIf="!isLogin" (ngSubmit)="register()" #registerForm="ngForm">
+    <input type="text" class="form-control mb-2" placeholder="Username"
+           [(ngModel)]="registerData.username" name="regUsername" required>
+    <input type="password" class="form-control mb-2" placeholder="New Password"
+           [(ngModel)]="registerData.newPassword" name="newPassword" required>
+    <input type="password" class="form-control mb-2" placeholder="Confirm Password"
+           [(ngModel)]="registerData.confirmPassword" name="confirmPassword" required>
+    <button class="btn btn-success w-100" type="submit">Register</button>
+  </form>
+
+  <!-- Toggle Link -->
+  <div class="text-center mt-3">
+    <a (click)="toggleForm()" style="cursor: pointer;">
+      {{ isLogin ? 'New user? Register' : 'Already have an account? Login' }}
+    </a>
+  </div>
+</div>

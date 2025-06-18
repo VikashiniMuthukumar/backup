@@ -1,0 +1,196 @@
+<!--  <p>addflight works!</p>
+
+<form #flightForm="ngForm" (ngSubmit)="addFlight(flightForm.value)" class="container col-md-6 mt-4">
+
+  <div class="form-group">
+    <label>Flight Name</label>
+    <input type="text" class="form-control" name="flightName" required pattern="[A-Z][a-zA-Z ]{2,15}" #nameControl="ngModel" ngModel>
+    <span style="color: red;" *ngIf="nameControl.touched && nameControl.invalid">Flight Name is mandatory and must start with uppercase</span>
+  </div>
+
+  <div class="form-group">
+    <label>Source</label>
+    <input type="text" class="form-control" name="source" required pattern="[A-Z][a-zA-Z ]{2,15}" #sourceControl="ngModel" ngModel>
+    <span style="color: red;" *ngIf="sourceControl.touched && sourceControl.invalid">Source is required</span>
+  </div>
+
+  <div class="form-group">
+    <label>Destination</label>
+    <input type="text" class="form-control" name="destination" required pattern="[A-Z][a-zA-Z ]{2,15}" #destinationControl="ngModel" ngModel>
+    <span style="color: red;" *ngIf="destinationControl.touched && destinationControl.invalid">Destination is required</span>
+  </div>
+
+  <div class="form-group">
+    <label>Departure Time</label>
+    <input type="text" class="form-control" name="departureTime" required placeholder="e.g., 10:00 AM" #departureControl="ngModel" ngModel>
+    <span style="color: red;" *ngIf="departureControl.touched && departureControl.invalid">Departure time is required</span>
+  </div>
+
+  <div class="form-group">
+    <label>Arrival Time</label>
+    <input type="text" class="form-control" name="arrivalTime" required placeholder="e.g., 12:00 PM" #arrivalControl="ngModel" ngModel>
+    <span style="color: red;" *ngIf="arrivalControl.touched && arrivalControl.invalid">Arrival time is required</span>
+  </div>
+
+  <div class="form-group">
+    <label>Price</label>
+    <input type="number" class="form-control" name="price" required min="1" #priceControl="ngModel" ngModel>
+    <span style="color: red;" *ngIf="priceControl.touched && priceControl.invalid">Valid price is required</span>
+  </div>
+
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-success" [disabled]="flightForm.invalid">Add Flight</button>
+  </div>
+
+</form>
+ -->
+
+
+ <!-- <div class="container col-md-6 mt-4">
+  <h3 class="text-center text-info mb-4">Add Flight</h3>
+  <form (ngSubmit)="addFlight()" #flightForm="ngForm">
+    <div class="form-group mb-3">
+      <label>Name</label>
+      <input type="text" class="form-control" [(ngModel)]="flight.name" name="name" required />
+    </div>
+
+    <div class="form-group mb-3">
+      <label>Flight Code</label>
+      <input type="text" class="form-control" [(ngModel)]="flight.flightCode" name="flightCode" required />
+    </div>
+
+    <div class="form-group mb-3">
+      <label>Total Seats</label>
+      <input type="number" class="form-control" [(ngModel)]="flight.totalSeats" name="totalSeats" required />
+    </div>
+
+    <div class="form-group mb-3">
+      <label>Cabin Baggage Limit (kg)</label>
+      <input type="number" class="form-control" [(ngModel)]="flight.cabinBaggageLimit" name="cabinBaggageLimit" required />
+    </div>
+
+    <div class="form-group mb-3">
+      <label>Check-in Baggage Limit (kg)</label>
+      <input type="number" class="form-control" [(ngModel)]="flight.checkInBaggageLimit" name="checkInBaggageLimit" required />
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="flightForm.invalid">Submit</button>
+  </form>
+
+  <div class="alert alert-success mt-3" *ngIf="message">{{ message }}</div>
+</div>  -->
+
+
+<!-- <form (ngSubmit)="addFlight()">
+  <input type="text" name="name" [(ngModel)]="flight.name" required>
+  <input type="text" name="flightCode" [(ngModel)]="flight.flightCode" required>
+  <input type="number" name="totalSeats" [(ngModel)]="flight.totalSeats" required>
+  <input type="number" name="cabinBaggageLimit" [(ngModel)]="flight.cabinBaggageLimit" required>
+  <input type="number" name="checkInBaggageLimit" [(ngModel)]="flight.checkInBaggageLimit" required>
+  <input type="number" name="owner_id" [(ngModel)]="flight.owner_id" required>
+
+  <button type="submit">Add Flight</button>
+</form> -->
+
+<!-- <form #flightForm="ngForm" (ngSubmit)="addFlight(flightForm)" class="container col-md-6 mt-4">
+
+  <div class="form-group">
+    <label>Flight Name</label>
+    <input type="text" class="form-control" name="name" [(ngModel)]="flight.name" required pattern="[A-Z][a-zA-Z ]{2,15}">
+    <span style="color: red;" *ngIf="flightForm.submitted && flightForm.controls['name']?.invalid">
+      Flight name is required and must start with uppercase
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label>Flight Code</label>
+    <input type="text" class="form-control" name="flightCode" [(ngModel)]="flight.flightCode" required pattern="[A-Z0-9]{3,10}">
+    <span style="color: red;" *ngIf="flightForm.submitted && flightForm.controls['flightCode']?.invalid">
+      Valid Flight Code is required (e.g., IND101)
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label>Total Seats</label>
+    <input type="number" class="form-control" name="totalSeats" [(ngModel)]="flight.totalSeats" required min="1">
+    <span style="color: red;" *ngIf="flightForm.submitted && flightForm.controls['totalSeats']?.invalid">
+      Total Seats must be at least 1
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label>Cabin Baggage Limit (kg)</label>
+    <input type="number" class="form-control" name="cabinBaggageLimit" [(ngModel)]="flight.cabinBaggageLimit" required min="1">
+    <span style="color: red;" *ngIf="flightForm.submitted && flightForm.controls['cabinBaggageLimit']?.invalid">
+      Valid Cabin Baggage Limit is required
+    </span>
+  </div>
+
+  <div class="form-group">
+    <label>Check-In Baggage Limit (kg)</label>
+    <input type="number" class="form-control" name="checkInBaggageLimit" [(ngModel)]="flight.checkInBaggageLimit" required min="1">
+    <span style="color: red;" *ngIf="flightForm.submitted && flightForm.controls['checkInBaggageLimit']?.invalid">
+      Valid Check-In Baggage Limit is required
+    </span>
+  </div>
+
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-success" [disabled]="flightForm.invalid">Add Flight</button>
+  </div>
+
+</form> -->
+
+
+<form #flightForm="ngForm" (ngSubmit)="addFlight(flightForm)" class="container col-md-6 mt-4">
+
+  <!-- Flight Name -->
+  <div class="form-group">
+    <label>Flight Name</label>
+    <input type="text" class="form-control" name="name" [(ngModel)]="flight.name" required pattern="[A-Z][a-zA-Z ]{2,15}" #name="ngModel">
+    <span style="color: red;" *ngIf="(name.touched || flightForm.submitted) && name.invalid">
+      Flight name is required and must start with an uppercase letter
+    </span>
+  </div>
+
+  <!-- Flight Code -->
+  <div class="form-group">
+    <label>Flight Code</label>
+    <input type="text" class="form-control" name="flightCode" [(ngModel)]="flight.flightCode" required pattern="[A-Z0-9]{3,10}" #flightCode="ngModel">
+    <span style="color: red;" *ngIf="(flightCode.touched || flightForm.submitted) && flightCode.invalid">
+      Valid Flight Code is required (e.g., IND101)
+    </span>
+  </div>
+
+  <!-- Total Seats -->
+  <div class="form-group">
+    <label>Total Seats</label>
+    <input type="number" class="form-control" name="totalSeats" [(ngModel)]="flight.totalSeats" required min="1" #totalSeats="ngModel">
+    <span style="color: red;" *ngIf="(totalSeats.touched || flightForm.submitted) && totalSeats.invalid">
+      Total Seats must be at least 1
+    </span>
+  </div>
+
+  <!-- Cabin Baggage -->
+  <div class="form-group">
+    <label>Cabin Baggage Limit (kg)</label>
+    <input type="number" class="form-control" name="cabinBaggageLimit" [(ngModel)]="flight.cabinBaggageLimit" required min="1" #cabinBaggageLimit="ngModel">
+    <span style="color: red;" *ngIf="(cabinBaggageLimit.touched || flightForm.submitted) && cabinBaggageLimit.invalid">
+      Valid Cabin Baggage Limit is required
+    </span>
+  </div>
+
+  <!-- Check-In Baggage -->
+  <div class="form-group">
+    <label>Check-In Baggage Limit (kg)</label>
+    <input type="number" class="form-control" name="checkInBaggageLimit" [(ngModel)]="flight.checkInBaggageLimit" required min="1" #checkInBaggageLimit="ngModel">
+    <span style="color: red;" *ngIf="(checkInBaggageLimit.touched || flightForm.submitted) && checkInBaggageLimit.invalid">
+      Valid Check-In Baggage Limit is required
+    </span>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="text-center mt-3">
+    <button type="submit" class="btn btn-success" [disabled]="flightForm.invalid">Add Flight</button>
+  </div>
+
+</form>

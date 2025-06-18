@@ -1,0 +1,152 @@
+<!-- <div class="container mt-4">
+  <h3 class="text-center text-success mb-4">All Bookings</h3>
+
+  <table class="table table-bordered table-striped text-center">
+    <thead class="table-success">
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Fare</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of bookings">
+        <td>{{ booking.bookingId }}</td>
+        <td>{{ booking.bookedAt | date: 'medium' }}</td>
+        <td>{{ booking.status }}</td>
+        <td>{{ booking.totalFare }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2" style="margin-right: 10px;" (click)="openEditModal(booking)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteBooking(booking.bookingId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="modal" tabindex="-1" style="display: block;" *ngIf="showEditModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="updateBooking()" #editForm="ngForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Booking</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+
+          <input type="hidden" [(ngModel)]="selectedBooking.bookingId" name="bookingId" />
+
+          <div class="form-group mb-2">
+            <label>Total Fare</label>
+            <input type="number" class="form-control" name="totalFare" [(ngModel)]="selectedBooking.totalFare" required min="0">
+          </div>
+
+          <div class="form-group mb-2">
+            <label>Status</label>
+            <select class="form-control" name="status" [(ngModel)]="selectedBooking.status" required>
+              <option value="CONFIRMED">CONFIRMED</option>
+              <option value="CANCELLED">CANCELLED</option>
+            </select>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Save</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<div class="container mt-4">
+  <h3 class="text-center text-info mb-4">All Bookings</h3>
+  <table class="table table-bordered table-striped text-center">
+    <thead class="table-info">
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Flight</th>
+        <th>Origin</th>
+        <th>Destination</th>
+        <th>Date</th>
+        <th>Fare</th>
+        <th>Status</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of bookings">
+        <td>{{ booking.bookingId }}</td>
+        <td>{{ booking.username }}</td>
+        <td>{{ booking.flightName }}</td>
+        <td>{{ booking.origin }}</td>
+        <td>{{ booking.destination }}</td>
+        <td>{{ booking.bookDate }}</td>
+        <td>{{ booking.totalFare }}</td>
+        <td>{{ booking.status }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm me-2" style="margin-right: 10px;"   (click)="openEditModal(booking)">Edit</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteBooking(booking.bookingId!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal" tabindex="-1" style="display: block;" *ngIf="showEditModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="updateBooking()" #editForm="ngForm">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Booking</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group mb-2">
+            <label>Username</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedBooking.username" name="username" required />
+          </div>
+
+          <div class="form-group mb-2">
+            <label>Origin</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedBooking.origin" name="origin" required />
+          </div>
+
+          <div class="form-group mb-2">
+            <label>Destination</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedBooking.destination" name="destination" required />
+          </div>
+
+          <div class="form-group mb-2">
+            <label>Flight Code</label>
+            <input type="text" class="form-control" [(ngModel)]="selectedBooking.flightCode" name="flightCode" required />
+          </div>
+
+          <div class="form-group mb-2">
+            <label>Status</label>
+            <select class="form-control" [(ngModel)]="selectedBooking.status" name="status" required>
+              <option value="CONFIRMED">CONFIRMED</option>
+              <option value="CANCELLED">CANCELLED</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-2">
+            <label>Total Fare</label>
+            <input type="number" class="form-control" [(ngModel)]="selectedBooking.totalFare" name="totalFare" required min="0" />
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="editForm.invalid">Save</button>
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
